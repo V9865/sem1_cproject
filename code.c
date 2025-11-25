@@ -382,6 +382,7 @@ Prof* profm(Prof* prof,int k){
 	}
 	}
 	else if(k==3){
+		//addS function
 		printf("Enter the name of the student you want to add to your course:\n");
 		char name[30];
 		int p=0;
