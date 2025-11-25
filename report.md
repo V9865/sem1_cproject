@@ -1,0 +1,214 @@
+# **STUDENT MANAGEMENT SYSTEM**
+
+
+
+### **Description and Functionalities:**
+
+
+
+##### We made a interactive management system that allows one to manage the students and professors in an institution.We achieved this using dynamic memory allocation, linked lists and external text files that were used through File I/O.
+
+##### It functions in 3 different modes:
+
+##### Professor Mode: This mode can be accessed by a professor after entering the "Professor ID" that is unique to each professor. In 
+
+##### &nbsp;                  this mode the professor can view his information, view the students signed up for his course, he can add new
+
+##### &nbsp;                  students to his course and also remove students from his course.
+
+##### 2\. Student Mode: This mode can be accessed by a student after entering the "Student ID" that is unique to each student and is assigned
+
+##### &nbsp;                to them when they are enrolled to the institute in the admin mode. In this mode a student can view the courses they
+
+##### &nbsp;                are a part off and the details of each course, they can also view the academic calendar that can be added and updated
+
+##### &nbsp;                in the admin mode.
+
+##### 3\. Admin Mode: This mode can be accessed by the institute after entering a very secret password(ARV). In this mode a list of the
+
+##### &nbsp;              professors can be viewed, a list of students can be viewed, new professors can be added to the database, professors can
+
+##### &nbsp;              be fired(removed) from the database, new students can be added as they join the institute etc.(they will also be
+
+##### &nbsp;              assigned a roll no. automatically as mentioned above), the admin can also add/update an academic calendar that can be
+
+##### &nbsp;              viewed by the students.
+
+
+
+### **Implementation of the Functions:**
+
+
+
+##### 1\. Professor mode: This mode utilizes the idea of linked lists and FILE I/O extensively.
+
+##### Prof mode has a few functions.
+
+##### But before we even enter the mode we have to enter your prof id. To check the prof id of all the professors please refer to the admin mode.
+
+##### a)My info
+
+##### b)My Student list
+
+##### c)Add Student
+
+##### d)Remove Student
+
+##### e)Return home
+
+##### When we enter an id that exists int the database it traverses through the professors linked list and enters professor mode with the professor whose id matches.
+
+##### This mode heavily depends on the boots(prof) function. boots returns a head pointer to the student linked list under the professor using file I/O.
+
+##### The functions associated with this mode are: new\_student();,boots(prof);,RemoveS(); and profm();
+
+##### My info is pretty self explanatory, since a prof is a node in the prof linked list it just prints all the data related to that prof.
+
+##### My Student list iterates through each element in the student linked list given by the boots(prof) function and prints the data of each student.
+
+##### Add Student accesses the file under the prof that contains all the student data and edits the specific line we need to change.
+
+##### Remove Student is similar to the above one but it removes the student from the linked list.
+
+##### Return home takes us back to the home screen.
+
+
+
+##### 2\. Student mode: Student mode is a single function which takes parameters as head of the student linked-list, head of the professor linked-list and roll number of the student. Student mode has the following features:
+
+##### a) Basic Details of the student: We take roll number of the student and we search the roll number in the student linked-list, the
+
+##### &nbsp; student linked-list is formed by iboots function. Then we print the details of the student which are Name, Roll number and the
+
+##### &nbsp; Courses in which he is present.
+
+##### b) Course Details: By enter the name of the course you can find the details of the Professor(Id and name). To get the details of the
+
+##### &nbsp; Professor, we go through the linked-list of professor and match the subject of the professor and the entered name of the course.
+
+##### &nbsp; This prints Id and name of the professor.
+
+##### c) Academic calendar: A file with named Academic\_calendar.txt is already created by the Admin. Here we use FILE I/O like fopen, fgets
+
+##### &nbsp; and fclose to open the file and print it line by line.
+
+
+
+##### 3\. Admin mode: This function is for the first time called in main and then onwards called recursive until broken.
+
+##### The following features can be found:
+
+##### a) We simply iterate through the linked list and print details of all the professors. 
+
+##### b) To add a new professor we first take the input and then check if the Professor ID entered is a new one using the
+
+##### &nbsp; flag variable and only if it is new we add the professor to the txt file using File I/O and to the linked list. 
+
+##### c) We can remove a professor using the fire() function(will be discussed later).
+
+##### d) Similar to professors we can print the names of all the students by traversing the linked list.
+
+##### e) We first check if there is someone with the same name in the database while parallelly making max the last assigned
+
+##### &nbsp; roll no. so that we can assign the new student a new roll no. then if the check passes and the student is not found
+
+##### &nbsp; he is added into the student.txt file and our then added to the linked list later using the iboots function.
+
+##### f) The calendar is added using the add\_calendar()(function(explained later).
+
+##### g) Breaks the recursion by returning head.
+
+
+
+### **Contributions:**
+
+
+
+##### Abhinav - Professor mode, iboots, bootp and boots functions
+
+##### Rithwik - Student mode, add\_calendar function
+
+##### Varshith - Admin mode, main, fire function
+
+##### The above mentioned topics were only to get the pseudocode and most of the actual coding was done together while debugging the code
+
+##### parallely to avoid too many errors and segmentation faults.
+
+
+
+### **Function Explanation:**
+
+
+
+1. ##### add\_calendar(); - It is feature under Admin to add calendar. To continue this function we want the admin to add a calendar file to
+
+##### the same folder as the code. Then by using the copy a
+
+##### file to other file method we copied the calendar.txt to Academic\_calendar.txt. The copy is basically opening the two files and run through the source file line by line and write it in the Academic\_calendar file. Every time we want to update the Academic calendar it will over write totally.
+
+
+
+##### 2\. main(); - In main we initialized two variables HEAD and head. HEAD points to head of the linked-list of Professors. Similar head points to head of the linked-list of students. After that, we run a loop to choose different modes viva if-else if-else statements.
+
+
+
+##### 3\. Prof\* bootp(); - This function always runs in the start of main and returns the head pointer to the professor linked list. It utilizes file I/O reads every line and creates a professor structure for every line using the new\_prof() function. It takes no input parameters but it does open the file "prof.txt" in read mode.
+
+
+
+##### 4\. Student \*iboots(); - This function returns the head pointer to the student linked list. Similar to the above line it also creates a struct student using file I/O. Reading info line by line here can be a bit annoying as the number of elements in each line isn't the same. For this reason we used the snum variable and we run a loop to get subject data after snum. This also takes no input parameters but accesses the file "student.txt" in read mode.
+
+
+
+##### 5\. Student \*boots(prof); - This function returns the head pointer to the student linked list under a certain professor. This function also creates a new file in the directory which contains the info about all the students under a professor. It reads lines exactly like the iboots function but prints all the data into a new file then it makes a linked list.
+
+
+
+##### 6\. Prof\* profm(Prof\* prof,int k); - This mode similar to admin mode is called by recursion. In the beginning of this function we use the boots function to get the student linked list. It has 5 options under it.
+
+##### a)My info - info from the prof node is printed here.
+
+##### b)My Student list - Iterates through each element in the linked list of students and prints the info.
+
+##### c)AddStudent - (Sorry for not using a function here) This part of the code does a few things:
+
+#####                         It opens a new file called new.txt in write mode.
+
+#####  		    	It iterates through each element in student.txt to check if the name of the student entered exists in the
+
+##### &nbsp;                       database.
+
+#####  			If the student exists in the database it changes 2 features of the string in new.txt it increases snum by 1
+
+##### &nbsp;                       and appends the string with the subject of the professor.
+
+#####  			Finally it deletes student.txt and renames new.txt to student.txt
+
+##### d) Remove Student - scans for a name and calls the removeS function.
+
+##### e) Return HOME - Return the prof pointer successfully ending the recursion.
+
+
+
+##### 7\. void removeS(Prof\* prof): This function is similar to the add student part of the code.
+
+#####  		It does exactly what the above thing did but it edits the string in a slightly different manner.
+
+#####  		It decreases snum by 1 and removes the subject that the prof is in.
+
+
+
+##### 8\. Prof\* fire(Prof\* prof); - So the problem with firing prof is we need to not only remove the prof from the prof file but we must
+
+##### &nbsp; also remove the subject that the professor takes from each student under the professor. The first part of the code fixes the first
+
+##### &nbsp; problem by finding the professor name we need to remove in the prof.txt and deletes that line.
+
+##### &nbsp; Before we return the new linked list we call the removePK function.
+
+
+
+##### 9\. void removePK( Prof\* prof); - This function iterates through each line in student.txt and edits the line if the professors subject
+
+##### &nbsp; matches with a students subjects it edits the line by decreasing snum by 1 and removing the subject.
+
