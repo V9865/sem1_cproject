@@ -1,0 +1,20 @@
+Aarav 1 2 C Python 
+Ananya 2 2 CA CN 
+Vivaan 3 3 C Python CA 
+Diya 4 2 Python CA 
+Ishaan 5 2 C CN 
+Priya 6 2 C CA 
+Kunal 7 3 Python C CA 
+Rohan 9 2 CA Python 
+Sanya 10 3 C CA Python 
+Arjun 11 2 CA CN 
+Rahul 13 3 CA Python C 
+Kabir 15 3 C CA CN 
+Pooja 16 3 Python CA C 
+Aditya 19 3 C Python CA 
+Lakshmi 20 2 CA CN 
+Dev 17 2 C CN 
+Hemanth 21 2 CN C 
+Nisha 14 3 Python CN C 
+Sneha 18 3 Python C CN 
+Tara 12 1 C 
